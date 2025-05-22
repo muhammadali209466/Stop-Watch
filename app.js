@@ -22,7 +22,7 @@ function timer() {
   if (hour > 23) {
     hour = 0;
   }
-  display.innerHTML = `00:${minute}:${sec}:${miliSec}`;
+  display.innerHTML = `${hour}:${minute}:${sec}:${miliSec}`;
 }
 
 function startTimer() {
