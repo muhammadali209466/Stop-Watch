@@ -1,43 +1,45 @@
+var miliSec = 0;
+var sec = 0;
+var minute = 0;
+var hour = 0;
 var display = document.getElementById("display");
-var timer = null;
-var startTime = 0;
-var elapsedTime = 0;
-var isRunning = false;
-
-function start() {
-  if (!isRunning) {
-    startTime = Date.now() - elapsedTime;
-    timer = setInterval(update, 10);
-    isRunning = true;
+var interval;
+var startBtn = document.getElementById("startBtn");
+function timer() {
+  miliSec++;
+  if (miliSec === 100) {
+    miliSec = 0;
+    sec++;
   }
-}
-
-function stop() {
-  if (isRunning) {
-    clearInterval(timer);
-    elapsedTime = Date.now() - startTime;
-    isRunning = false;
+  if (sec > 59) {
+    sec = 0;
+    minute++;
   }
+  if (minute > 59) {
+    minute = 0;
+    hour++;
+  }
+  if (hour > 23) {
+    hour = 0;
+  }
+  display.innerHTML = `00:${minute}:${sec}:${miliSec}`;
 }
 
-function reset() {
-  clearInterval(timer);
-  startTime = 0;
-  elapsedTime = 0;
-  isRunning = false;
-  display.textContent = "00:00:00:00";
+function startTimer() {
+  interval = setInterval(timer, 10);
+  startBtn.disabled = true;
 }
-function update() {
-  var currentTime = Date.now();
-  elapsedTime = currentTime - startTime;
-  var hours = Math.floor(elapsedTime / (1000 * 60 * 60));
-  var minutes = Math.floor((elapsedTime / (1000 * 60)) % 60);
-  var seconds = Math.floor((elapsedTime / 1000) % 60);
-  var miliSeconds = Math.floor((elapsedTime % 1000) / 10);
-  hours = String(hours).padStart(2, "0");
-  minutes = String(minutes).padStart(2, "0");
-  seconds = String(seconds).padStart(2, "0");
-  miliSeconds = String(miliSeconds).padStart(2, "0");
 
-  display.textContent = `${hours}:${minutes}:${seconds}:${miliSeconds}`;
+function stopTimer() {
+  clearInterval(interval);
+  startBtn.disabled = false;
+}
+function resetTimer() {
+  clearInterval(interval);
+  display.innerHTML = `00:00:00:00`;
+  miliSec = 0;
+  sec = 0;
+  minute = 0;
+  hour = 0;
+  startBtn.disabled = false;
 }
