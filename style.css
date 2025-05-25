@@ -26,10 +26,7 @@ body {
   text-shadow: 2px 2px 2px hsla(0, 0%, 0%, 0.75);
   margin-bottom: 25px;
 }
-.controls {
-  display: flex;
-  flex-direction: column;
-}
+
 .controls button {
   font-size: 25px;
   font-weight: 700;
@@ -75,4 +72,8 @@ body {
   .controls button {
     text-align: center;
   }
+  .controls {
+  display: flex;
+  flex-direction: column;
+}
 }
