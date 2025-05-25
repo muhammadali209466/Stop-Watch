@@ -26,6 +26,10 @@ body {
   text-shadow: 2px 2px 2px hsla(0, 0%, 0%, 0.75);
   margin-bottom: 25px;
 }
+.controls {
+  display: flex;
+  flex-direction: column;
+}
 .controls button {
   font-size: 25px;
   font-weight: 700;
@@ -36,6 +40,7 @@ body {
   border-radius: 10px;
   cursor: pointer;
   color: white;
+
   transition: all ease 0.5s;
 }
 .Startbtn {
@@ -55,4 +60,19 @@ body {
 }
 .Resetbtn:hover {
   background-color: hsl(205, 90%, 50%);
+}
+
+@media screen and (min-width: 320px) and (max-width: 600px) {
+  .heading {
+    font-size: 35px;
+  }
+  .displays {
+    font-size: 37px;
+  }
+  .controls button {
+    font-size: 20px;
+  }
+  .controls button {
+    text-align: center;
+  }
 }
